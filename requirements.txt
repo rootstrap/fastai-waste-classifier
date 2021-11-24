@@ -1,0 +1,8 @@
+jupyter
+fastai
+glob2
+sklearn
+pandas
+numpy
+seaborn
+
