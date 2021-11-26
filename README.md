@@ -21,7 +21,10 @@ The aim is to build a model for waste classification that identifies among the d
 This machine learning model will help people to improve their decision when classifying trash
 
 ## Dataset 
-
 The data is already splitted in train and test folders. Inside each folder contains one folder for each class. Those images were obtained using Bing searcher using the api HTTP.
 You can find the code used to download the images at [this](https://colab.research.google.com/drive/1JvAYFx1DIEi1MMyI-tuCfE2eHMSKisKT?usp=sharing) Google Colab.
 
+## Model 
+You can find the code for the classifier [here](resnet-model.ipynb)
+To load the model in the file result-resnet34.pkl or esult-resnet50.pkl
+Those are the files for the trained models using resnet34 and resnet50 
