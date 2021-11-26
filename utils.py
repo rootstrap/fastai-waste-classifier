@@ -24,7 +24,7 @@ def show_predictions(learn_loaded, TEST_FOLDER):
         for j in range(cols):        
             if img_count < len(preds):
                 image=Image.open(f"{TEST_FOLDER}/{preds[img_count][0]}")
-                axes[i, j].set_title(preds[img_count][1])
+                axes[i, j].set_title(preds[img_count][1].split('_')[0])
                 axes[i, j].imshow(image)
                 img_count+=1
     fig.show()
