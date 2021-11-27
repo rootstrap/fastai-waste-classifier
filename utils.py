@@ -24,15 +24,15 @@ def show_predictions(learn_loaded, TEST_FOLDER):
         for j in range(cols):        
             if img_count < len(preds):
                 image=Image.open(f"{TEST_FOLDER}/{preds[img_count][0]}")
-                axes[i, j].set_title(preds[img_count][1].split('_')[0])
+                axes[i, j].set_title(preds[img_count][1])
                 axes[i, j].imshow(image)
                 img_count+=1
     fig.show()
 
-def print_results(dir_classes, learn_loaded, DATASET_DIR, result_file):
+def print_results(classes, learn_loaded, DATASET_DIR, result_file):
     preds = []
     actuals = []
-    for c in dir_classes:
+    for c in classes:
         predictions = get_predictions(learn_loaded, f"{DATASET_DIR}/{c}")
         preds.extend(predictions)
         actuals.extend(np.full((1,len(predictions)), c).ravel().tolist())
@@ -40,7 +40,6 @@ def print_results(dir_classes, learn_loaded, DATASET_DIR, result_file):
     print('Accuracy', accuracy_score(actuals, pred_vals))
     print('F1 score', f1_score(actuals, pred_vals, average='macro'))
     print(classification_report(y_pred=actuals, y_true=pred_vals))
-    classes = list(map(lambda x: x.split('_')[0],dir_classes))
 
     cm  = confusion_matrix(actuals, pred_vals)
 

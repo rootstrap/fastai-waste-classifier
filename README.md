@@ -28,3 +28,10 @@ You can find the code used to download the images at [this](https://colab.resear
 You can find the code for the classifier [here](resnet-model.ipynb)
 To load the model in the file result-resnet34.pkl or esult-resnet50.pkl
 Those are the files for the trained models using resnet34 and resnet50 
+
+The model reaches an accuracy of 0.98, here we can see the confusion matrix:
+![confusion_matrix](classification_matrix_resnet34.png)
+
+## Usage 
+Check this [Google Colab](https://colab.research.google.com/drive/1qMxyoVngHiV6E2ePu54o5PiJFr5Ifhku?usp=sharing) to use the model with your own images. 
+
