@@ -28,12 +28,11 @@ You can find the final dataset splitted into train and test  [here](https://driv
 Split into train/test 
 ## Model 
 You can find the code for the classifier [here](resnet-model.ipynb)
-To load the model in the file result-resnet34.pkl or esult-resnet50.pkl
+To load the model in the file result-model.ipynb
 Those are the files for the trained models using resnet34 and resnet50 
 
 The model reaches an accuracy of 0.98, here we can see the confusion matrix:
 ![confusion_matrix](classification_matrix_resnet34.png)
-
 
 
 ## Usage 
