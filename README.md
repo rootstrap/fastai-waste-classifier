@@ -23,7 +23,9 @@ This machine learning model will help people to improve their decision when clas
 ## Dataset 
 The data is already splitted in train and test folders. Inside each folder contains one folder for each class. Those images were obtained using Bing searcher using the api HTTP.
 You can find the code used to download the images at [this](https://colab.research.google.com/drive/1JvAYFx1DIEi1MMyI-tuCfE2eHMSKisKT?usp=sharing) Google Colab.
+You can find the final dataset splitted into train and test  [here](https://drive.google.com/file/d/1GDKCR470ruEwhWgoNp7pERr_nhsDCXs4/view?usp=sharing) in a Google Drive folder.
 
+Split into train/test 
 ## Model 
 You can find the code for the classifier [here](resnet-model.ipynb)
 To load the model in the file result-resnet34.pkl or esult-resnet50.pkl
