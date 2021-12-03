@@ -8,6 +8,12 @@ import os
 app = Flask(__name__)
 model = load_learner('result-resnet34.pkl')
 
+@app.route('/')
+def home():
+    """Render website's home page."""
+    return render_template('index.html')
+
+
 @app.route('/uploader', methods = ['GET', 'POST'])
 def upload_file():
    if request.method == 'POST':
