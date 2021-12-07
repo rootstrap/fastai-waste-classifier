@@ -9,6 +9,7 @@ WORKDIR /app
 ADD result-resnet34.pkl /app/ 
 ADD main.py /app/ 
 
-CMD ["gunicorn", "main:app", "--bind" ,"0.0.0.0:8080"]
+CMD ["python", "main.py"]
 
+EXPOSE 5000
 
