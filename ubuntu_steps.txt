@@ -1,0 +1,6 @@
+sudo apt-get update
+sudo apt-get install docker.io
+sudo systemctl start docker
+git clone https://github.com/rootstrap/fastai-waste-classifier.git
+cd fastai-waste-classifier/
+sudo docker build -t waste-classifier . 
