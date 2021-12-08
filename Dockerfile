@@ -2,7 +2,7 @@ FROM python:3.8.12
 
 RUN apt-get -y update  && apt-get install -y 
 
-RUN pip install fastai flask werkzeug gunicorn
+RUN pip install fastai flask werkzeug
 
 WORKDIR /app
 

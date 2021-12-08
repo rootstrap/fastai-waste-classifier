@@ -7,4 +7,3 @@ numpy
 seaborn
 flask
 werkzeug
-gunicorn

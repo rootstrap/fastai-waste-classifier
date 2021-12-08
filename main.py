@@ -17,15 +17,10 @@ def home():
 
 @app.route('/uploader', methods = ['POST'])
 def upload_file():
-   print('0')
    f = request.files['file']
-   print('1')
    f.save(secure_filename(f.filename))
-   print('2')
    prediction = model.predict(f.filename)
-   print('3')
    num = int(prediction[1].numpy().tolist())
-   print('4')
    prob = float(prediction[2].numpy()[num])
    print(f'Classified as {prediction[0]}', f'Class number {num}', f' with probability {prob}')
    os.remove(f.filename)
