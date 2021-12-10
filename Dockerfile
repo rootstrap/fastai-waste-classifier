@@ -8,6 +8,7 @@ WORKDIR /app
 
 ADD result-resnet34.pkl /app/ 
 ADD main.py /app/ 
+ADD templates /app/templates/
 
 CMD ["python", "main.py"]
 

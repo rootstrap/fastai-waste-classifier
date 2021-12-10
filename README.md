@@ -37,3 +37,5 @@ The model reaches an accuracy of 0.98, here we can see the confusion matrix:
 ## Usage 
 Check this [Google Colab](https://colab.research.google.com/drive/1qMxyoVngHiV6E2ePu54o5PiJFr5Ifhku?usp=sharing) to use the model with your own images. 
 
+## Build image
+docker buildx build --platform linux/amd64 -t waste-classifier .

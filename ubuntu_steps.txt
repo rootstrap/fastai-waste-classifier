@@ -1,6 +1,11 @@
+## Install docker 
 sudo apt-get update
 sudo apt-get install docker.io
 sudo systemctl start docker
-git clone https://github.com/rootstrap/fastai-waste-classifier.git
-cd fastai-waste-classifier/
-sudo docker build -t waste-classifier . 
+
+## Run docker image 
+sudo apt install awscli
+aws configure 
+aws ecr get-login-password --region ${REGION}|  sudo docker login --username AWS --password-stdin ${ECR_REPO}
+sudo docker run -d -p 5000:5000 ${IAMGE}
+

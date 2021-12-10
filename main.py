@@ -14,19 +14,31 @@ model = load_learner('result-resnet34.pkl')
 def home():
     return 'ok'
 
-
-@app.route('/uploader', methods = ['POST'])
-def upload_file():
-   f = request.files['file']
+def process_file(f):
    f.save(secure_filename(f.filename))
    prediction = model.predict(f.filename)
    num = int(prediction[1].numpy().tolist())
    prob = float(prediction[2].numpy()[num])
-   print(f'Classified as {prediction[0]}', f'Class number {num}', f' with probability {prob}')
+   print(f'Classified as {prediction[0]}, Class number {num} with probability {prob}')
    os.remove(f.filename)
    return {'predicted': prediction[0], 'class_number':num, 'probability': prob}
+    
+
+
+@app.route('/upload', methods = ['GET','POST'])
+def upload():
+   if request.method == 'GET':
+      return render_template('upload.html')
+   else:
+      f = request.files['file']
+      return process_file(f)
+
+@app.route('/uploader', methods = ['POST'])
+def upload_file():
+   f = request.files['file']
+   return process_file(f)
       
 		
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000)
 
