@@ -1,11 +1,13 @@
 #!/bin/python 
 
-from flask import Flask, render_template, request, flash, redirect, url_for
+from flask import Flask, render_template, request, flash, redirect, url_for, make_response
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
 from fastai.vision.all import *
 import os
 import time
+import datetime
+
 
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
@@ -14,6 +16,20 @@ app.secret_key = "OopbBPqgw95PhuJDb2lG3XSq"
 app.config['UPLOAD_FOLDER'] = 'static'
 
 model = load_learner('result-resnet34.pkl')
+
+# remove files older than 1 minute (60s)
+def remove_files():
+   for file in [os.path.join(app.config['UPLOAD_FOLDER'],file)
+            for file in next(os.walk(app.config['UPLOAD_FOLDER']))[2]
+            if not file.startswith('.')]:
+
+      file_path = os.path.join(file)
+      creation_date = datetime.datetime.fromtimestamp(os.path.getmtime(file_path))
+      now = datetime.datetime.now()
+      diff = now - creation_date
+      if diff.seconds > 60:
+         print(f'Removing file {file}')
+         os.remove(file_path)
 
 
 def validate_filename(filename):
@@ -32,6 +48,9 @@ def predict(filename):
       return 'Error'
 
 def save_file(f):
+   
+   remove_files()
+
    filename = secure_filename(f.filename)
    
    if filename=='':
@@ -58,22 +77,23 @@ def check():
 
 @app.route('/upload', methods = ['GET','POST'])
 def upload():
-   if request.method == 'GET':
-      return render_template('upload.html')
-   else:
+   response = render_template('upload.html')
+   filename = ''
+   if request.method != 'GET':
       f = request.files['file']
       (result, filename) = save_file(f)
       if result:
          prediction = predict(filename)
          if 'predicted' in prediction.keys():
-            return render_template('upload.html', filename=filename.split('/')[1], predict_message=f"Classified as {prediction['predicted']} with probability {prediction['probability']}")
+            response = render_template('upload.html', 
+               filename=filename.split('/')[1], 
+               predict_message=f"Classified as {prediction['predicted']} with probability {prediction['probability']}")
          else:
             flash('An error has occurred')
-            return render_template('upload.html')
       else:
          flash(filename)
-         return render_template('upload.html')
 
+   return response
 
 @app.route('/classify', methods = ['POST'])
 def upload_file():
