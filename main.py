@@ -11,7 +11,7 @@ from pathlib import Path
 import re
 
 app = Flask(__name__)
-app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
+app.config['MAX_CONTENT_LENGTH'] = 8 * 1024 * 1024
 app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png', 'jpeg']
 app.secret_key = "OopbBPqgw95PhuJDb2lG3XSq"
 app.config['UPLOAD_FOLDER'] = 'static'

@@ -1,0 +1,3 @@
+aws configure 
+aws ecr get-login-password --region ${REGION}|  sudo docker login --username AWS --password-stdin ${ECR_REPO}
+
