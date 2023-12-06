@@ -1,3 +1,5 @@
+jupyter
+notebook
 fastai
 glob2
 sklearn
