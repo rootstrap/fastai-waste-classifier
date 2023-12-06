@@ -2,16 +2,14 @@ FROM python:3.8.12
 
 RUN apt-get -y update  && apt-get install -y 
 
-RUN pip install fastai flask werkzeug
-
 WORKDIR /app
 
-ADD result-resnet34.pkl /app/ 
-ADD main.py /app/ 
-ADD templates /app/templates/
-ADD static /app/static 
+COPY requirements.txt requirements.txt 
+RUN pip install -r requirements.txt
 
-CMD ["python", "main.py"]
 
-EXPOSE 5000
+COPY ./ /app/ 
 
+CMD ["jupyter", "notebook" , "--allow-root", "--ip='0.0.0.0'"]
+
+EXPOSE 8888

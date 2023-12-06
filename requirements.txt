@@ -1,4 +1,5 @@
 jupyter
+notebook
 fastai
 glob2
 sklearn
@@ -7,3 +8,4 @@ numpy
 seaborn
 flask
 werkzeug
+streamlit 
